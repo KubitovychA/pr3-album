@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Neon Horizon — Lumen Drift</title>
+  <!-- Шрифти Google Fonts: Inter (основний текст) + Roboto Mono (цифри/тривалість) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,31 +19,42 @@
         <path d="M10 24 Q20 8 30 24" stroke="#fff" stroke-width="3" fill="none"/>
       </svg>
       <h1>Lumen Drift — Audio Release</h1>
+      <nav class="nav" aria-label="Головна навігація">
+        <a href="#cover">Альбом</a>
+        <a href="#tracks">Треки</a>
+        <a href="#player">Плеєр</a>
+      </nav>
     </header>
 
-    <aside class="cover">
+    <aside class="cover" id="cover">
       <img src="img/cover-800.webp"
            srcset="img/cover-400.webp 400w, img/cover-800.webp 800w, img/cover-1200.webp 1200w"
            sizes="(max-width: 700px) 100vw, 320px"
            width="800" height="800" loading="lazy"
            alt="Обкладинка альбому Neon Horizon: сонце на горизонті у неонових смугах">
       <h2>Neon Horizon</h2>
-      <p>Lumen Drift · 2026 · Synthwave</p>
+      <p class="meta">Lumen Drift · 2026</p>
+      <p class="desc">Шість ритмічних треків про нічні траси, неонове місто та світанок на горизонті. Ідеально для довгих поїздок і вечірньої роботи.</p>
+      <p>
+        <span class="badge">Synthwave</span>
+        <span class="badge">Новий реліз</span>
+      </p>
+      <a class="btn" href="#player">Слухати</a>
     </aside>
 
-    <main class="tracks">
+    <main class="tracks" id="tracks">
       <table>
         <caption>Трек-лист</caption>
         <thead>
           <tr><th scope="col">#</th><th scope="col">Назва</th><th scope="col">Тривалість</th><th scope="col">Відтворити</th></tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td>Afterglow</td><td>3:42</td><td><button class="play-btn" data-title="Afterglow" aria-label="Відтворити трек Afterglow"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
-          <tr><td>2</td><td>Night Drive</td><td>4:05</td><td><button class="play-btn" data-title="Night Drive" aria-label="Відтворити трек Night Drive"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
-          <tr><td>3</td><td>Pixel Rain</td><td>3:18</td><td><button class="play-btn" data-title="Pixel Rain" aria-label="Відтворити трек Pixel Rain"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
-          <tr><td>4</td><td>Chrome Skyline</td><td>4:31</td><td><button class="play-btn" data-title="Chrome Skyline" aria-label="Відтворити трек Chrome Skyline"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
-          <tr><td>5</td><td>Static Hearts</td><td>3:57</td><td><button class="play-btn" data-title="Static Hearts" aria-label="Відтворити трек Static Hearts"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
-          <tr><td>6</td><td>Horizon</td><td>4:37</td><td><button class="play-btn" data-title="Horizon" aria-label="Відтворити трек Horizon"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>1</td><td>Afterglow</td><td class="time">3:42</td><td><button class="play-btn" data-title="Afterglow" aria-label="Відтворити трек Afterglow"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>2</td><td>Night Drive</td><td class="time">4:05</td><td><button class="play-btn" data-title="Night Drive" aria-label="Відтворити трек Night Drive"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>3</td><td>Pixel Rain</td><td class="time">3:18</td><td><button class="play-btn" data-title="Pixel Rain" aria-label="Відтворити трек Pixel Rain"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>4</td><td>Chrome Skyline</td><td class="time">4:31</td><td><button class="play-btn" data-title="Chrome Skyline" aria-label="Відтворити трек Chrome Skyline"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>5</td><td>Static Hearts</td><td class="time">3:57</td><td><button class="play-btn" data-title="Static Hearts" aria-label="Відтворити трек Static Hearts"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>6</td><td>Horizon</td><td class="time">4:37</td><td><button class="play-btn" data-title="Horizon" aria-label="Відтворити трек Horizon"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
         </tbody>
         <tfoot>
           <tr><td colspan="4">Усього: 6 треків · 24:10</td></tr>
@@ -47,7 +62,7 @@
       </table>
     </main>
 
-    <footer class="player">
+    <footer class="player" id="player">
       <p id="now-playing" aria-live="polite">Оберіть трек</p>
       <audio id="audio" controls aria-label="Глобальний аудіоплеєр">
         <source src="audio/track.mp3" type="audio/mpeg">

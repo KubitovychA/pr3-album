@@ -1,0 +1,56 @@
+:root { --bg:#0f0f1a; --panel:#1a1a2e; --text:#f1f1f6; --muted:#9a9ab0; --accent:#ff4d8d; }
+* { box-sizing: border-box; margin: 0; }
+body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+/* CSS Grid: каркас сторінки */
+.page {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "cover  tracks"
+    "player player";
+  gap: 1rem;
+  min-height: 100vh;
+  padding: 1rem;
+}
+.header { grid-area: header; display: flex; align-items: center; gap: .75rem; }
+.cover  { grid-area: cover; background: var(--panel); border-radius: 12px; padding: 1rem; }
+.tracks { grid-area: tracks; background: var(--panel); border-radius: 12px; padding: 1rem; overflow-x: auto; }
+.player { grid-area: player; position: sticky; bottom: 1rem; background: var(--panel);
+          border: 1px solid #2d2d4a; border-radius: 12px; padding: .75rem 1rem; }
+
+.cover img { width: 100%; height: auto; border-radius: 8px; display: block;
+             transition: transform .4s ease; }
+.cover img:hover { transform: scale(1.04); }
+.cover h2 { margin-top: .75rem; }
+.cover p { color: var(--muted); }
+
+table { width: 100%; border-collapse: collapse; }
+caption { text-align: left; font-weight: 700; padding-bottom: .5rem; }
+th, td { padding: .6rem; text-align: left; border-bottom: 1px solid #2d2d4a; }
+thead th { color: var(--muted); font-size: .85rem; text-transform: uppercase; }
+tfoot td { color: var(--muted); }
+tbody tr { transition: background .25s, color .25s; animation: fade-in .6s ease both; }
+tbody tr:nth-child(2) { animation-delay: .1s; } tbody tr:nth-child(3) { animation-delay: .2s; }
+tbody tr:nth-child(4) { animation-delay: .3s; } tbody tr:nth-child(5) { animation-delay: .4s; }
+tbody tr:nth-child(6) { animation-delay: .5s; }
+tbody tr:hover, tbody tr.active { background: #26264a; color: var(--accent); }
+
+.play-btn { background: var(--accent); border: 0; border-radius: 50%; width: 36px; height: 36px;
+            display: grid; place-items: center; cursor: pointer; color: #fff;
+            transition: transform .2s, background .2s; }
+.play-btn:hover, .play-btn:focus-visible { transform: scale(1.15); background: #ff2a75; }
+.active .play-btn { animation: pulse 1.4s infinite; }
+
+.player p { margin-bottom: .4rem; color: var(--muted); }
+audio { width: 100%; }
+
+@keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,77,141,.7); } 70% { box-shadow: 0 0 0 12px rgba(255,77,141,0); } 100% { box-shadow: 0 0 0 0 rgba(255,77,141,0); } }
+
+@media (max-width: 700px) {
+  .page { grid-template-columns: 1fr; grid-template-areas: "header" "cover" "tracks" "player"; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neon Horizon — Lumen Drift</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <!-- Векторний логотип (inline SVG) -->
+      <svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="Логотип Lumen Drift">
+        <circle cx="20" cy="20" r="18" fill="#ff4d8d"/>
+        <path d="M10 24 Q20 8 30 24" stroke="#fff" stroke-width="3" fill="none"/>
+      </svg>
+      <h1>Lumen Drift — Audio Release</h1>
+    </header>
+
+    <aside class="cover">
+      <img src="img/cover-800.webp"
+           srcset="img/cover-400.webp 400w, img/cover-800.webp 800w, img/cover-1200.webp 1200w"
+           sizes="(max-width: 700px) 100vw, 320px"
+           width="800" height="800" loading="lazy"
+           alt="Обкладинка альбому Neon Horizon: сонце на горизонті у неонових смугах">
+      <h2>Neon Horizon</h2>
+      <p>Lumen Drift · 2026 · Synthwave</p>
+    </aside>
+
+    <main class="tracks">
+      <table>
+        <caption>Трек-лист</caption>
+        <thead>
+          <tr><th scope="col">#</th><th scope="col">Назва</th><th scope="col">Тривалість</th><th scope="col">Відтворити</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Afterglow</td><td>3:42</td><td><button class="play-btn" data-title="Afterglow" aria-label="Відтворити трек Afterglow"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>2</td><td>Night Drive</td><td>4:05</td><td><button class="play-btn" data-title="Night Drive" aria-label="Відтворити трек Night Drive"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>3</td><td>Pixel Rain</td><td>3:18</td><td><button class="play-btn" data-title="Pixel Rain" aria-label="Відтворити трек Pixel Rain"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>4</td><td>Chrome Skyline</td><td>4:31</td><td><button class="play-btn" data-title="Chrome Skyline" aria-label="Відтворити трек Chrome Skyline"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>5</td><td>Static Hearts</td><td>3:57</td><td><button class="play-btn" data-title="Static Hearts" aria-label="Відтворити трек Static Hearts"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+          <tr><td>6</td><td>Horizon</td><td>4:37</td><td><button class="play-btn" data-title="Horizon" aria-label="Відтворити трек Horizon"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2 L14 8 L4 14 Z" fill="currentColor"/></svg></button></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="4">Усього: 6 треків · 24:10</td></tr>
+        </tfoot>
+      </table>
+    </main>
+
+    <footer class="player">
+      <p id="now-playing" aria-live="polite">Оберіть трек</p>
+      <audio id="audio" controls aria-label="Глобальний аудіоплеєр">
+        <source src="audio/track.mp3" type="audio/mpeg">
+        <source src="audio/track.wav" type="audio/wav">
+        Ваш браузер не підтримує елемент audio.
+      </audio>
+    </footer>
+  </div>
+
+  <script>
+    const audio = document.getElementById("audio");
+    const label = document.getElementById("now-playing");
+    document.querySelectorAll(".play-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("tbody tr").forEach(r => r.classList.remove("active"));
+        btn.closest("tr").classList.add("active");
+        label.textContent = "Зараз грає: " + btn.dataset.title;
+        audio.currentTime = 0;
+        audio.play();
+      });
+    });
+  </script>
+</body>
+</html>
